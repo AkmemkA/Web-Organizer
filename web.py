@@ -2,13 +2,13 @@ import streamlit as st
 import functions
 
 
-todos = functions.get_todos("/Users/kodi1993/PycharmProjects/pythonProject/todos.txt")
+todos = functions.get_todos()
 
 
 def add_todo():
     todo = st.session_state["new todo"] + "\n"
     todos.append(todo)
-    functions.write_todos(todos, "/Users/kodi1993/PycharmProjects/pythonProject/todos.txt")
+    functions.write_todos(todos)
 
 
 st.title("My ToDo App")
@@ -18,7 +18,7 @@ for index, i in enumerate(todos):
     checkbox = st.checkbox(i.capitalize(), key=i)
     if checkbox:
         todos.pop(index)
-        functions.write_todos(todos, "/Users/kodi1993/PycharmProjects/pythonProject/todos.txt")
+        functions.write_todos(todos)
         del st.session_state[i]
         st.experimental_rerun()
 
